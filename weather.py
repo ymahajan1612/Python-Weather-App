@@ -7,7 +7,7 @@ pygame.init()
 #colours
 white = (255,255,255)
 api_key = '44e522bdab1e065926ef411813823305'
-display = Window(600,500,"Weather Around the World",None,"mountain_bg.jpg",None)
+display = Window(600,500,"Weather Around the World",None,"background.png",None)
 window = display.create_window()
 
 search_bar = Text_box(90,10,400,80,str,100)
@@ -16,7 +16,7 @@ objects = [search_bar,search_button]
 def home():
 	location = None
 	while True:
-		display.update_window(None,pygame.image.load("mountain_bg.jpg"))
+		display.update_window(None,pygame.image.load("background.png"))
 		search_bar.draw(window)
 		search_button.draw(window)
 		for event in pygame.event.get():
