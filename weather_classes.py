@@ -77,8 +77,8 @@ class Text_box(Tools):
 		super(Text_box, self).__init__(x, y, width, height, font_size)
 		self.rect = pygame.Rect(x, y, width, height)  # Creates the textbox using rect.
 		self.font = pygame.font.SysFont(None, self.font_size)  # setting the font to pygame default (None)
-		self.colour = black  # colour of the box
-		self.font_colour = black  # colour of the font
+		self.colour = white # colour of the box
+		self.font_colour = white  # colour of the font
 		self.text_rect = self.font.render(self.text, True, self.font_colour)  # creating the text surface
 		self.active = False  # setting to False
 		self.input_type = input_type  # expected data type of input (could be str, int or float)
@@ -92,10 +92,10 @@ class Text_box(Tools):
 		if event.type == pygame.MOUSEBUTTONDOWN:
 			if self.rect.collidepoint(event.pos):  # checks if textbox clicked
 				self.active = True  # sets to True
-				self.colour = white  # changes colour to white
+				self.colour = black  # changes colour to white
 			else:
 				self.active = False  # if mouse clicks off the textbox
-				self.colour = black
+				self.colour = white
 		if event.type == pygame.KEYDOWN:  # adding characters
 			if self.active:
 				# Refreshing text
@@ -113,14 +113,16 @@ class Text_box(Tools):
 
 	def draw(self, display):  # a method to draw the textbox to the screen
 		display.blit(self.text_rect, (self.rect.x + 5, self.rect.y + 5))
-		pygame.draw.rect(display, self.colour, self.rect, 2)
+		pygame.draw.rect(display, self.colour, self.rect, 3)
 
 
 class Button(Tools):
 	def __init__(self, x, y, font, font_size, font_colour, colour, text, width, height, image=None):
 		super().__init__(x, y, font, font_size, font_colour, colour, text, width, height)
-		self.image = pygame.image.load(image)
-
+		if image:
+			self.image = pygame.image.load(image)
+		else:
+			self.image = None
 	def draw(self, display, outline=True):  # Option for outline on button
 		if outline:
 			pygame.draw.rect(display, outline,
